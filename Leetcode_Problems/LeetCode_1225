@@ -1,3 +1,4 @@
+-- Report Contiguous Dates (Premium Hard)
 CREATE TABLE Failed (
     fail_date DATE
 );
