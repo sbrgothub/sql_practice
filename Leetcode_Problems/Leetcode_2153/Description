@@ -1,0 +1,6 @@
+The Concept: Figuring out how many people board a bus when there is a rolling line of waiting passengers and limited seats.
+Skills Used: Recursive CTEs (WITH RECURSIVE), Window Functions, LEFT JOIN.
+
+Used Recursive CTEs to build a system that tracks a moving queue of people waiting for buses based on chronological arrival times.
+Calculated "leftover" passengers who couldn't fit on a full bus and mathematically carried that number forward to the next available bus.
+Combined grouping logic and joins to clean and prep raw data into a timeline before running the recursive loop.
