@@ -1,0 +1,6 @@
+The Concept: Building a complete distribution chart (histogram) of user behavior that explicitly includes the "zeroes"—making sure empty data categories don't just disappear from the final report.
+Skills Used: Data Scaffolding, Recursive CTEs (WITH RECURSIVE), LEFT JOIN operations, Data Imputation (IFNULL).
+
+Engineered a "Data Scaffolding" SQL architecture using a Recursive CTE to dynamically generate a continuous number sequence from zero up to the maximum data point.
+Merged sparse, real-world user activity logs with the generated number sequence using LEFT JOINs to guarantee gapless, continuous reporting.
+Built a comprehensive frequency chart that accurately exposed hidden "zero-activity" metrics (such as users who visited but made zero transactions) for complete business analytics.
