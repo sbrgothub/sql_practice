@@ -1,0 +1,32 @@
+CREATE TABLE Visits (
+    user_id INT,
+    visit_date DATE
+);
+
+CREATE TABLE Transactions (
+    user_id INT,
+    transaction_date DATE,
+    amount INT
+);
+
+INSERT INTO Visits (user_id, visit_date) VALUES 
+(1, '2020-01-01'), 
+(2, '2020-01-02'), 
+(2, '2020-01-03'), 
+(3, '2020-01-01'), 
+(4, '2020-01-04');
+
+INSERT INTO Transactions (user_id, transaction_date, amount) VALUES
+(2, '2020-01-02', 100),
+(2, '2020-01-03', 200),
+(4, '2020-01-04', 300),
+(4, '2020-01-04', 400),
+(4, '2020-01-04', 500);
+
+with recursive a as(select user_id,transaction_date,count(*) as ct from transactions group by user_id,transaction_date),
+b as(select v.user_id,v.visit_date,ifnull(a.ct,0) as ct from visits as v left join a on v.user_id=a.user_id and v.visit_date=a.transaction_date),
+c as (select ct,count(ct) as visit from b group by ct),
+d as (select 0 as c, ifnull((select max(ct) from c),0) as mx
+      union all
+      select c+1,mx from d where c<mx)
+select d.c as transactions,ifnull(c.visit,0) as visit from d left join c on d.c=c.ct
