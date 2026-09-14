@@ -1,0 +1,6 @@
+The Concept: Grouping back-to-back days of system successes or failures into clean "start" and "end" date streaks.
+Skills Used: The "Gaps and Islands" Pattern, Window Functions (ROW_NUMBER()), Date Subtraction.
+
+Solved the classic "Gaps and Islands" SQL architecture problem to track continuous streaks of data over time.
+Used the ROW_NUMBER() window function combined with date subtraction to automatically generate a unique ID for back-to-back consecutive days.
+Condensed a disorganized daily log of system statuses into a clean report showing the start dates, end dates, and total duration of each streak.
