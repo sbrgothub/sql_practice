@@ -1,0 +1,6 @@
+The Concept: Splitting a single long-term record (like a 3-year subscription) into separate rows for each specific year.
+Skills Used: Row-Expansion Recursion, Date Math (DATE_ADD, TIMESTAMPDIFF, LAST_DAY), Correlated Subqueries.
+
+Wrote a recursive SQL query to take a single row of sales data and dynamically "expand" it into multiple rows, one for each calendar year it touched.
+Used advanced date functions to calculate the exact number of days a continuous sale lasted within each specific year.
+Applied subqueries to set strict boundaries, ensuring the generated dates stopped exactly on the actual end date without overflowing.
