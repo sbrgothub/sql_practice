@@ -1,0 +1,35 @@
+CREATE TABLE Buses (
+    bus_id INT,
+    arrival_time INT,
+    capacity INT
+);
+
+CREATE TABLE Passengers (
+    passenger_id INT,
+    arrival_time INT
+);
+
+INSERT INTO Buses (bus_id, arrival_time, capacity) VALUES
+(1, 2, 1),
+(2, 4, 10),
+(3, 7, 2);
+
+INSERT INTO Passengers (passenger_id, arrival_time) VALUES
+(11, 1),
+(12, 1),
+(13, 5),
+(14, 6),
+(15, 6);
+/*with recursive a as (select row_number() over(order by arrival_time) as rn,buses.* from buses)
+select bus_id,arrival_time as at,(select count(*) from passengers where arrival_time<at) as sm from a*/
+
+with recursive a as (select b.bus_id,b.arrival_time as b_at,b.capacity,p.arrival_time,p.passenger_id from buses as b join passengers as p on b.arrival_time>=p.arrival_time order by b.arrival_time),
+b as (select passenger_id,min(bus_id) as bus_id from a group by passenger_id),
+c as (select bus_id,count(bus_id) as cnt from b group by bus_id),
+d as (select buses.bus_id,ifnull(c.cnt,0) as cnt,ifnull(buses.capacity,0) as cp from buses left join c on buses.bus_id=c.bus_id),
+e as(select bus_id,cnt as ct,case when cnt-cp<0 then 0 else cnt-cp end as new_ct from d where bus_id=1
+     UNION all
+     select d.bus_id,d.cnt+e.new_ct as cnt,case
+     when (d.cnt+e.new_ct)-d.cp<0 then 0 else (d.cnt+e.new_ct)-d.cp
+     end as new_ct from d join e on d.bus_id=e.bus_id+1 where d.bus_id=e.bus_id+1)
+select bus_id,ct-new_ct from e
