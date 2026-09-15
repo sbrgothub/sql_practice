@@ -1,0 +1,6 @@
+Concept: Building a cohort analysis report to calculate "Day 1 Retention"—tracking the exact percentage of newly acquired users who return to a system exactly one day after their first login.
+Skills Used: Cohort Analysis, Advanced LEFT JOIN mapping, Window Functions (COUNT() OVER), Date Math (DATE_ADD), Ratio Aggregations.
+
+Engineered a cohort analysis data pipeline to isolate daily user acquisition metrics by extracting first-touch event records from raw activity logs.
+Designed strict LEFT JOIN logic binding specific user IDs to chronological calendar intervals, accurately separating genuine retained users from general daily active users (DAU).
+Implemented a hybrid SQL architecture utilizing Window Functions to pre-calculate baseline cohort denominators, enabling scalable, precise calculation of Day-1 retention conversion rates.
