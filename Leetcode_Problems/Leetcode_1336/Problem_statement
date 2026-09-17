@@ -1,0 +1,17 @@
+The Problem Statement
+You need to write a query that calculates a frequency distribution of transactions per visit.
+
+Specifically, you need to:
+
+Figure out how many transactions each user made during each individual visit.
+
+Find the maximum number of transactions any user made in a single visit.
+
+Output a report listing every possible transaction count from 0 up to that maximum number, along with the total number of visits that had exactly that many transactions.
+
+Expected output:
+transactions_count,visits_count
+0                  2
+1                  2
+2                  0
+3                  1
