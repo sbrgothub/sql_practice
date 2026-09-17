@@ -1,0 +1,17 @@
+LeetCode 1384: Total Sales Amount by Year
+
+The Problem Statement
+You are given a Product table and a Sales table containing date ranges and an average daily sales metric for each item.
+The objective is to write an SQL query that calculates the total sales amount for each product broken down strictly by calendar year.
+If a single sales record crosses into multiple years (like 2018 to 2020), you must expand that record into multiple rows—one for each year the product was sold. The output must be ordered by product_id and report_year.
+
+The Expected Output
+Based on your updated insert statements (where Product 1 now only spans two days: Jan 25 to Jan 26), here is the exact expected result.
+
+product_id,product_name,report_year,total_amount
+1,LC Phone,2019,200
+2,LC T-Shirt,2018,310
+2,LC T-Shirt,2019,3650
+2,LC T-Shirt,2020,10
+3,LC Keychain,2019,31
+3,LC Keychain,2020,31
