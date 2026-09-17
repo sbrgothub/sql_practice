@@ -1,0 +1,14 @@
+LeetCode 1097: Game Play Analysis V
+
+The Problem Statement
+You are given an Activity table that tracks game logins by players. You need to report the Day 1 retention rate for each install date.
+
+An install date is defined as the very first day a player logs into the game.
+
+Day 1 retention is the fraction of players who installed on a specific date and logged back in exactly one day later, divided by the total number of players who installed the game on that exact date. The retention rate must be rounded to 2 decimal places.
+
+The Expected Output
+Based on this specific dataset, here is the exact expected result:
+install_date,installs,Day1_retention
+2016-03-01,2,0.50
+2016-03-02,1,0.00
