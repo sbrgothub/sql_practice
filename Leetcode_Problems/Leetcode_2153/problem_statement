@@ -1,0 +1,19 @@
+LeetCode 2153: The Number of Passengers in Each Bus II
+
+The Problem Statement
+You are given a Buses table (with arrival times and strict passenger capacities) and a Passengers table (with arrival times at the station).
+The rules are:
+
+Passengers can board a bus if they arrive at or before the bus's arrival time.
+
+Passengers always board the earliest available bus.
+
+If the number of waiting passengers exceeds the bus's capacity, the bus fills up to its maximum limit, and the remaining passengers are left behind to wait for the next bus.
+The goal is to calculate exactly how many passengers successfully board each bus, ordered by bus_id.
+
+The Expected Output
+Based on the specific arrival times and capacities you provided, here is the exact expected result:
+bus_id,passengers_cnt
+1,1
+2,1
+3,2
