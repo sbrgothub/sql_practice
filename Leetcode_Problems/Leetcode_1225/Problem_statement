@@ -1,0 +1,13 @@
+LeetCode 1225: Report Contiguous Dates
+
+The Problem Statement
+You are given two tables: Failed (dates when tasks failed) and Succeeded (dates when tasks succeeded).
+The goal is to write a query that identifies every continuous period of consecutive days where tasks shared the exact same state.
+The report must only include dates in the year 2019 (2019-01-01 to 2019-12-31). 
+For each continuous block, you must output the state (succeeded or failed), the start date of that block, and the end date, ordered by the start date.
+
+Expected_output:
+period_state,start_date,end_date
+succeeded,2019-01-01,2019-01-03
+failed,2019-01-04,2019-01-05
+succeeded,2019-01-06,2019-01-06
