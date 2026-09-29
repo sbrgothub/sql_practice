@@ -1,0 +1,11 @@
+Write an SQL query to report the IDs of the users whose first and last calls on any given day were with the exact same person.
+Calls are counted regardless of whether the user was the caller or the recipient.
+If a user only made/received one single call on a specific day, that call is technically both their first and last call, so they should be included.
+Return the unique user_ids.
+
+Expected Output
+user_id
+8
+4
+5
+1
