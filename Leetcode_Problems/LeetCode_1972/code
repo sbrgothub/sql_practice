@@ -1,0 +1,23 @@
+CREATE TABLE Calls (
+    caller_id INT,
+    recipient_id INT,
+    call_time DATETIME
+);
+
+INSERT INTO Calls (caller_id, recipient_id, call_time) VALUES
+(8, 4, '2021-08-24 17:46:07'),
+(4, 8, '2021-08-24 19:57:13'),
+(5, 1, '2021-08-11 05:28:44'),
+(8, 3, '2021-08-17 04:04:15'),
+(11, 3, '2021-08-17 13:07:00'),
+(8, 11, '2021-08-17 22:22:22');
+
+with unioned as (select caller_id,recipient_id,call_time from calls union all
+select recipient_id,caller_id,call_time from calls),
+mn as (select caller_id,recipient_id,call_time as dt,
+       min(call_time) over (partition by caller_id,date(call_time)) as mn from unioned),
+mx as (select caller_id,recipient_id,call_time as dt,
+       max(call_time) over (partition by caller_id,date(call_time)) as mx from unioned),
+joined as(select mn.caller_id as mn_cid,mn.recipient_id as mn_rid,mx.caller_id as mx_cid,mx.recipient_id as mx_rid,mn.dt as mn_dt,mx.dt as mx_dt from mn join mx on
+mn.caller_id=mx.caller_id and date(mn.dt)=date(mx.dt) where mn.dt=mn.mn and mx.dt=mx.mx)
+select distinct mn_cid as user_id from joined where mn_rid=mx_rid
