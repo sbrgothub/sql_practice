@@ -1,0 +1,7 @@
+First and Last Call On the Same Day
+Concept: Analyzing bidirectional communication logs to identify daily behavioral bookends—specifically isolating users whose first and last network interactions on any given day were with the exact same counterpart.
+Skills Used: Bidirectional Data Unpivoting (UNION ALL), Temporal Boundary Extraction, Window Functions (MIN/MAX OVER), Complex Self-Joins
+
+Engineered a bidirectional data unpivoting pipeline using UNION ALL to standardize fragmented caller and recipient logs into a unified, chronological user timeline.
+Implemented temporal window functions to dynamically extract the exact minimum (first) and maximum (last) interaction timestamps per user, partitioned by calendar dates.
+Designed a targeted self-join architecture to align a user's daily behavioral bookends onto a single row, successfully isolating instances where the initial and final counterpart IDs matched.
