@@ -1,0 +1,27 @@
+CREATE TABLE Spending (
+    user_id INT,
+    spend_date DATE,
+    platform VARCHAR(10),
+    amount INT
+);
+
+INSERT INTO Spending (user_id, spend_date, platform, amount) VALUES
+(1, '2019-07-01', 'mobile', 100),
+(1, '2019-07-01', 'desktop', 100),
+(2, '2019-07-01', 'mobile', 100),
+(2, '2019-07-02', 'mobile', 100),
+(3, '2019-07-01', 'desktop', 100),
+(1, '2019-07-02', 'desktop', 100),
+(3, '2019-07-02', 'desktop', 100);
+with a as(select user_id,spend_date,count(distinct platform) as ct from spending group by user_id,spend_date),
+b as(select s.user_id,s.spend_date,case
+when a.ct=2 then "Both" else platform end as platform,s.amount
+from spending as s join a on s.user_id=a.user_id and s.spend_date=a.spend_date),
+c as(select spend_date,platform,count(DISTINCT user_id) as ct,sum(amount) as sm from b group by spend_date,platform),
+bothing as (select distinct spend_date,"mobile" as platform,0 as ct,0 as sm from spending
+            union all
+            select DISTINCT spend_date,"desktop" as platform,0 as ct, 0 as sm from spending
+            union all
+            select distinct spend_date,"Both" as platform,0 as ct, 0 as sm from spending),
+unioned as (select * from c union all select * from bothing)
+select spend_date,platform,sum(ct) as total_users,sum(sm) as total_amount from unioned group by spend_date,platform
