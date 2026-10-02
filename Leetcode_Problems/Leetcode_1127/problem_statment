@@ -1,0 +1,16 @@
+User Purchase Platform
+Write an SQL query to find the total number of users and the total amount spent using the mobile platform, the desktop platform, and both platforms together, 
+for every single date present in the table.
+
+If a user makes a purchase on only mobile on a given date, they count towards mobile.
+If they purchase on only desktop, they count towards desktop.
+If they purchase on both mobile and desktop on the same date, their total spend must be aggregated into a new category called both. They are no longer counted in the individual mobile or desktop buckets for that day.
+
+Expected output:
+spend_date,platform,total_amount,total_users
+2019-07-01,desktop,100,1
+2019-07-01,mobile,100,1
+2019-07-01,both,200,1
+2019-07-02,desktop,100,1
+2019-07-02,mobile,100,1
+2019-07-02,both,0,0
