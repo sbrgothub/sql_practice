@@ -1,0 +1,29 @@
+CREATE TABLE Candidates (
+    employee_id INT,
+    experience VARCHAR(10),
+    salary INT
+);
+
+INSERT INTO Candidates (employee_id, experience, salary) VALUES
+(1, 'Junior', 10000),
+(9, 'Junior', 10000),
+(2, 'Senior', 20000),
+(11, 'Senior', 20000),
+(13, 'Senior', 50000),
+(4, 'Junior', 40000);
+
+with recursive ord as(select *,row_number() over(order by experience desc, salary) as rn from candidates where salary<=70000),
+em as(
+  select experience,salary,salary as sm,rn from ord where rn=1 and salary<=70000
+  union all
+  select ord.experience,case when (ord.salary+em.sm)>70000 then -1 else ord.salary end as salary,
+  case when (ord.salary+em.sm)>70000 then em.sm else (ord.salary+em.sm) end as sm,
+  ord.rn from ord join em on ord.rn=em.rn+1
+  ),
+found as(select * from em where salary!=-1),
+unioned_1 as (select "Senior" as experience,0 as ct union all
+            select "Junior" as experience,0 as ct),
+unioned_2 as(select experience,count(*) as ct from found group by experience
+union all
+select experience,ct from unioned_1)
+select experience,sum(ct) from unioned_2 group by experience
