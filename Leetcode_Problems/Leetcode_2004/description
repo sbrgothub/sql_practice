@@ -1,0 +1,7 @@
+The Concept: Designing a stateful waterfall budget allocation model to sequentially calculate hiring limits across tiered employee groups, ensuring strict adherence to a continuous financial ceiling.
+Skills Used: Recursive CTEs (Stateful Looping), Sequential Window Functions (ROW_NUMBER()), Data Scaffolding (UNION ALL), Knapsack Optimization Logic.
+
+Resume Bullets:
+Developed a stateful, recursive SQL data pipeline to solve a bounded Knapsack budget allocation problem, evaluating hierarchical data sequentially against a strict cumulative sum constraint.
+Engineered dynamic conditional logic within a recursive loop to act as a waterfall filter, carrying over residual budgets seamlessly across distinct reporting categories (Senior to Junior).
+Implemented pre-computation filtering to optimize processing depth and applied Cartesian scaffolding techniques to guarantee gapless, matrix-accurate business intelligence reporting for absent data groups.
