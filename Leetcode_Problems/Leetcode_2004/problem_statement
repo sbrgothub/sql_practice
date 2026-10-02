@@ -1,0 +1,10 @@
+A company wants to hire new employees. The budget of the company for the salaries is $70,000. The company's hiring criteria are:
+
+Hire as many Senior candidates as possible, starting with the cheapest salaries first.
+After hiring the maximum number of Seniors, use the remaining budget to hire as many Junior candidates as possible, starting with the cheapest salaries first.
+Write an SQL query to find the number of Seniors and Juniors hired. Both categories must appear in the final output, even if the count is 0.
+
+expected out:
+experience,accepted_candidates
+Senior,2
+Junior,2
